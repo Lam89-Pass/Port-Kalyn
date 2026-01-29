@@ -1,32 +1,17 @@
-import { useEffect, useState } from "react";
-import api from "../../api/axios";
+import { motion } from "framer-motion";
 
 const Skills = () => {
-  const [skills, setSkills] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    api
-      .get("/skills")
-      .then((res) => {
-        setSkills(res.data);
-        setLoading(false);
-      })
-      .catch((err) => console.error(err));
-  }, []);
-
-  if (loading) return <div className="p-10 text-center">Loading Skills...</div>;
+  const stacks = ["Laravel 12", "React 19", "MySQL", "Tailwind 4", "Node.js", "Docker", "AWS", "Framer"];
 
   return (
-    <div className="max-w-5xl mx-auto p-6">
-      <h2 className="text-3xl font-bold mb-8 border-b-2 border-blue-600 inline-block">Technical Skills</h2>
-      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
-        {skills.map((skill) => (
-          <div key={skill.id} className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col items-center hover:scale-105 transition">
-            {/* Jika lu simpan icon/logo di DB, bisa pake <img> di sini */}
-            <span className="font-bold text-gray-800">{skill.name}</span>
-            <span className="text-xs text-blue-500 mt-1">{skill.level || "Intermediate"}</span>
-          </div>
+    <div className="max-w-6xl mx-auto px-6 text-center">
+      <h2 className="text-4xl font-black mb-16 tracking-tighter italic">MY ARSENAL.</h2>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+        {stacks.map((stack, i) => (
+          <motion.div key={stack} whileHover={{ y: -10 }} className="p-8 rounded-3xl bg-white dark:bg-slate-900 border border-gray-100 dark:border-white/5 shadow-sm hover:shadow-xl transition-all">
+            <div className="w-10 h-10 bg-blue-600/10 rounded-xl mx-auto mb-4 flex items-center justify-center text-blue-600 font-bold uppercase text-xs">{stack[0]}</div>
+            <span className="font-black text-xs tracking-widest uppercase">{stack}</span>
+          </motion.div>
         ))}
       </div>
     </div>

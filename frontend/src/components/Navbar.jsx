@@ -1,36 +1,28 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-scroll";
 
 const Navbar = () => {
-  const location = useLocation();
-
   const navLinks = [
-    { name: "Home", path: "/" },
-    { name: "About", path: "/about" },
-    { name: "Skills", path: "/skills" },
-    { name: "Experience", path: "/experience" },
-    { name: "Education", path: "/education" },
-    { name: "Projects", path: "/projects" },
-    { name: "Contact", path: "/contact" },
+    { name: "Home", to: "home" },
+    { name: "About", to: "about" },
+    { name: "Projects", to: "projects" },
+    { name: "Contact", to: "contact" },
   ];
 
   return (
-    <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-md z-50 border-b border-gray-100">
-      <div className="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
-        <Link to="/" className="text-2xl font-black text-blue-600 tracking-tighter">
-          KALYN<span className="text-gray-900">.PORT</span>
-        </Link>
-
-        <div className="hidden md:flex gap-8">
-          {navLinks.map((link) => (
-            <Link key={link.path} to={link.path} className={`text-sm font-semibold transition hover:text-blue-600 ${location.pathname === link.path ? "text-blue-600" : "text-gray-500"}`}>
-              {link.name}
-            </Link>
-          ))}
-        </div>
-
-        {/* Tombol Mobile simpel kalau lu mau nambahin logic nantinya */}
-        <div className="md:hidden font-bold text-blue-600">Menu</div>
+    <nav className="fixed top-6 left-1/2 -translate-x-1/2 w-[90%] max-w-5xl z-50 glass-red rounded-2xl px-8 py-4 flex items-center justify-between shadow-[0_0_30px_rgba(220,38,38,0.15)]">
+      <div className="text-2xl font-black tracking-tighter text-red-600 cursor-pointer uppercase">
+        Kalyn<span className="text-white">.Exe</span>
       </div>
+
+      <div className="hidden md:flex gap-10">
+        {navLinks.map((link) => (
+          <Link key={link.to} to={link.to} smooth={true} spy={true} offset={-100} className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400 hover:text-red-500 cursor-pointer transition-all" activeClass="text-red-600">
+            {link.name}
+          </Link>
+        ))}
+      </div>
+
+      <div className="h-2 w-2 rounded-full bg-red-600 animate-pulse shadow-[0_0_10px_#dc2626]"></div>
     </nav>
   );
 };

@@ -1,26 +1,19 @@
-import { useEffect, useState } from "react";
-import api from "../../api/axios";
-
 const Experience = () => {
-  const [experiences, setExperiences] = useState([]);
-
-  useEffect(() => {
-    api.get("/experiences").then((res) => setExperiences(res.data));
-  }, []);
+  const experiences = [
+    { role: "Senior Developer", company: "Tech Global", year: "2023 - Present" },
+    { role: "Fullstack Dev", company: "StartupX", year: "2021 - 2023" },
+  ];
 
   return (
-    <div className="max-w-4xl mx-auto p-6">
-      <h2 className="text-3xl font-bold mb-10 border-b-2 border-blue-600 inline-block">Professional Experience</h2>
-      <div className="space-y-8">
+    <div className="max-w-4xl mx-auto px-6">
+      <h2 className="text-4xl font-black mb-16">WORK HISTORY</h2>
+      <div className="space-y-12 border-l border-white/10 pl-8 relative">
         {experiences.map((exp) => (
-          <div key={exp.id} className="relative pl-8 border-l-2 border-blue-200">
-            <div className="absolute w-4 h-4 bg-blue-600 rounded-full -left-[9px] top-1"></div>
-            <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-              <span className="text-sm font-semibold text-blue-600">{exp.duration}</span>
-              <h3 className="text-xl font-bold mt-1">{exp.position}</h3>
-              <h4 className="text-gray-600 font-medium">{exp.company}</h4>
-              <p className="mt-3 text-gray-700">{exp.description}</p>
-            </div>
+          <div key={exp.role} className="relative">
+            <div className="absolute -left-[41px] top-1 w-5 h-5 bg-primary rounded-full border-4 border-bg-main shadow-[0_0_20px_rgba(59,130,246,0.5)]"></div>
+            <span className="text-xs font-bold text-primary uppercase tracking-widest">{exp.year}</span>
+            <h3 className="text-2xl font-bold mt-2">{exp.role}</h3>
+            <p className="text-gray-500 font-medium">{exp.company}</p>
           </div>
         ))}
       </div>

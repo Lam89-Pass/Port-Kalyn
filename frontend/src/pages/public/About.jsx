@@ -1,30 +1,31 @@
-import { useEffect, useState } from 'react';
-import api from '../../api/axios';
+import { motion } from "framer-motion";
 
 const About = () => {
-    const [about, setAbout] = useState(null);
-
-    useEffect(() => {
-        api.get('/abouts').then(res => setAbout(res.data[0]));
-    }, []);
-
-    return (
-        <div className="max-w-4xl mx-auto p-6 leading-relaxed">
-            <h2 className="text-3xl font-bold mb-6">Tentang Gue</h2>
-            <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
-                <p className="text-lg text-gray-700 mb-6">{about?.description || 'Ceritain perjalanan lu di sini...'}</p>
-                
-                <h3 className="font-bold text-xl mb-4 text-blue-600">Apa yang gue kuasai?</h3>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    {/* Lu bisa map data Skills di sini nanti */}
-                    <div className="p-4 bg-gray-50 rounded-lg text-center font-medium">React 19</div>
-                    <div className="p-4 bg-gray-50 rounded-lg text-center font-medium">Laravel 12</div>
-                    <div className="p-4 bg-gray-50 rounded-lg text-center font-medium">Tailwind 4</div>
-                    <div className="p-4 bg-gray-50 rounded-lg text-center font-medium">MySQL</div>
-                </div>
-            </div>
+  return (
+    <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
+      <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} className="relative group">
+        <div className="absolute -inset-4 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-[2rem] blur-2xl opacity-20 group-hover:opacity-40 transition duration-1000"></div>
+        <div className="relative bg-gray-200 dark:bg-slate-900 rounded-[2rem] aspect-square overflow-hidden border border-white/5">
+          <img src="https://via.placeholder.com/800" className="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-700" alt="Profile" />
         </div>
-    );
+      </motion.div>
+
+      <div className="space-y-8">
+        <h2 className="text-5xl font-black tracking-tighter">THE VISIONARY.</h2>
+        <p className="text-gray-500 text-xl leading-relaxed">Gue adalah Fullstack Developer yang terobsesi dengan performa ekstrem dan estetika visual. Setiap baris kode yang gue tulis adalah investasi untuk masa depan digital lu.</p>
+        <div className="flex gap-12 pt-4">
+          <div>
+            <h4 className="text-4xl font-black text-blue-600">05+</h4>
+            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">Exp Years</p>
+          </div>
+          <div>
+            <h4 className="text-4xl font-black text-blue-600">40+</h4>
+            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">Global Client</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default About;
